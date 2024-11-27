@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package cpo_mastermind_durac_degennaro;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,6 +26,25 @@ public class CPO_mastermind_DURAC_DEGENNARO {
         System.out.println("Couleur du pion Jaune: " + pionJaune.getCouleur());
         System.out.println("Couleur du pion Vert: " + pionVert.getCouleur());
         System.out.println("Couleur du pion Blanc: " + pionBlanc.getCouleur());
+        
+        ArrayList<Character> couleursDisponibles = new ArrayList<>();
+        couleursDisponibles.add('R');
+        couleursDisponibles.add('B');
+        couleursDisponibles.add('G');
+        couleursDisponibles.add('Y');
+        
+        
+        Combinaison combinaison1 = Combinaison.genererAleatoire(4, couleursDisponibles);
+        Combinaison combinaison2 = Combinaison.genererAleatoire(4, couleursDisponibles);
+        
+        // Afficher les combinaisons générées
+        System.out.println("Combinaison 1 : " + combinaison1);
+        System.out.println("Combinaison 2 : " + combinaison2);
+        
+       
+        int[] indices = combinaison1.comparer(combinaison2);
+        System.out.println("Bien places : " + indices[0]);
+        System.out.println("Mal places : " + indices[1]);
+    }
     }
     
-}
