@@ -41,10 +41,8 @@ public class Partie {
         
         // Boucle de jeu
         while (true) {
-            // Affichage de l'état actuel du plateau
             plateau.afficherPlateau();
-            
-            // Vérification des conditions de victoire ou défaite
+           
             if (plateau.estVictoire()) {
                 terminerPartie(true);
                 break;
@@ -54,11 +52,9 @@ public class Partie {
                 break;
             }
             
-            // Demander au joueur de proposer une combinaison
             System.out.println("Tour " + (tour + 1) + ": Entrez votre combinaison (ex: RBGY): ");
             String entree = scanner.nextLine().toUpperCase();
 
-            // Validation de l'entrée et conversion en Combinaison
             if (entree.length() == 4 && validateInput(entree)) {
                 Pion[] tentativePions = new Pion[4];
                 for (int i = 0; i < 4; i++) {
@@ -85,7 +81,6 @@ public class Partie {
         return true;
     }
 
-    // Affiche le message de fin de partie (victoire ou défaite)
     public void terminerPartie(boolean victoire) {
         if (victoire) {
             System.out.println("Félicitations, vous avez trouvé la combinaison secrète !");
