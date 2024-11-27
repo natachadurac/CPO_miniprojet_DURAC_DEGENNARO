@@ -14,7 +14,17 @@ public class CPO_mastermind_DURAC_DEGENNARO {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Pion pionRouge = new Pion('R');
+        Pion pionBleu = new Pion('B');
+        Pion pionJaune = new Pion('J');
+        Pion pionVert = new Pion('V');
+        Pion pionBlanc = new Pion('W');
+        
+        System.out.println("Couleur du pion Rouge: " + pionRouge.getCouleur());
+        System.out.println("Couleur du pion Bleu: " + pionBleu.getCouleur());
+        System.out.println("Couleur du pion Jaune: " + pionJaune.getCouleur());
+        System.out.println("Couleur du pion Vert: " + pionVert.getCouleur());
+        System.out.println("Couleur du pion Blanc: " + pionBlanc.getCouleur());
     }
     
 }

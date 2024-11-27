@@ -9,12 +9,14 @@ package cpo_mastermind_durac_degennaro;
  * @author natac
  */
 public class Pion {
-    String couleur;
+    char couleur;
 
-    public Pion(String couleur) {
+    public Pion(char couleur) {
         this.couleur = couleur;
     }
-    
+    public char getCouleur(){
+        return couleur;
+    }
 
     @Override
     public String toString() {
