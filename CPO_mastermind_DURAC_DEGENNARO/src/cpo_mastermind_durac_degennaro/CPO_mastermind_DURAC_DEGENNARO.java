@@ -4,6 +4,7 @@
  */
 package cpo_mastermind_durac_degennaro;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,22 +21,26 @@ public class CPO_mastermind_DURAC_DEGENNARO {
         Pion pionJaune = new Pion('J');
         Pion pionVert = new Pion('V');
         Pion pionBlanc = new Pion('W');
+        Pion pionNoir = new Pion('N');
         
         System.out.println("Couleur du pion Rouge: " + pionRouge.getCouleur());
         System.out.println("Couleur du pion Bleu: " + pionBleu.getCouleur());
         System.out.println("Couleur du pion Jaune: " + pionJaune.getCouleur());
         System.out.println("Couleur du pion Vert: " + pionVert.getCouleur());
         System.out.println("Couleur du pion Blanc: " + pionBlanc.getCouleur());
+        System.out.println("Couleur du pion Noir: " + pionNoir.getCouleur());
         
         ArrayList<Character> couleursDisponibles = new ArrayList<>();
         couleursDisponibles.add('R');
         couleursDisponibles.add('B');
-        couleursDisponibles.add('G');
-        couleursDisponibles.add('Y');
+        couleursDisponibles.add('J');
+        couleursDisponibles.add('V');
+        couleursDisponibles.add('W');
+        couleursDisponibles.add('N');
         
         
-        Combinaison combinaison1 = Combinaison.genererAleatoire(4, couleursDisponibles);
-        Combinaison combinaison2 = Combinaison.genererAleatoire(4, couleursDisponibles);
+        Combinaison combinaison1 = Combinaison.genererAleatoire(6, couleursDisponibles);
+        Combinaison combinaison2 = Combinaison.genererAleatoire(6, couleursDisponibles);
         
         // Afficher les combinaisons générées
         System.out.println("Combinaison 1 : " + combinaison1);
@@ -45,6 +50,12 @@ public class CPO_mastermind_DURAC_DEGENNARO {
         int[] indices = combinaison1.comparer(combinaison2);
         System.out.println("Bien places : " + indices[0]);
         System.out.println("Mal places : " + indices[1]);
+        
+        //List<Character> couleursDisponibles = List.of('R', 'B', 'G', 'Y'); 
+
+        Partie partie = new Partie(4, 10, couleursDisponibles);
+        partie.afficherRegles();
+        partie.lancerPartie();
     }
     }
     
