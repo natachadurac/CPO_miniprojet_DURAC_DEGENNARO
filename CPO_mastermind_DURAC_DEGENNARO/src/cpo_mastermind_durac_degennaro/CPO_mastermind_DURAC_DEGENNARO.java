@@ -50,8 +50,6 @@ public class CPO_mastermind_DURAC_DEGENNARO {
         int[] indices = combinaison1.comparer(combinaison2);
         System.out.println("Bien places : " + indices[0]);
         System.out.println("Mal places : " + indices[1]);
-        
-        //List<Character> couleursDisponibles = List.of('R', 'B', 'G', 'Y'); 
 
         Partie partie = new Partie(4, 10, couleursDisponibles);
         partie.afficherRegles();
