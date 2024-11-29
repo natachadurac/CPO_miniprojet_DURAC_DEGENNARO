@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
+import cpo_mastermind_durac_degennaro.PlateauDeJeu;
+import java.awt.GridLayout;
+import javax.swing.JButton;
 /**
  *
  * @author flavi
@@ -12,8 +14,24 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     /**
      * Creates new form FenetrePrincipale
      */
+      PlateauDeJeu grille;
+      int nbCoups;
+      
     public FenetrePrincipale() {
         initComponents();
+        int nbLignes= 12;
+        int nbColonnes = 4;
+        
+      
+        this.grille = new PlateauDeJeu(nbLignes, nbColonnes);
+        PanneauGrille.setLayout(new GridLayout (nbLignes, nbColonnes));
+        
+        for (int i=0; i< nbLignes; i++){
+            for (int j=0; j<nbColonnes; j++){
+                JButton bouton_cellule = new JButton ();
+                PanneauGrille.add(bouton_cellule);
+            }
+        }
     }
 
     /**
