@@ -47,7 +47,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        PanneauGrille.setBackground(new java.awt.Color(102, 102, 255));
+        PanneauGrille.setBackground(new java.awt.Color(0, 0, 255));
         PanneauGrille.setPreferredSize(new java.awt.Dimension(400, 400));
 
         javax.swing.GroupLayout PanneauGrilleLayout = new javax.swing.GroupLayout(PanneauGrille);
