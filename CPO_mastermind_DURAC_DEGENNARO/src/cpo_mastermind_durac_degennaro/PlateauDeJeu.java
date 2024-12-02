@@ -9,24 +9,47 @@ package cpo_mastermind_durac_degennaro;
  * @author natac
  */
 import java.util.ArrayList;
-public class PlateauDeJeu {
-    private Combinaison combinaisonSecrete; 
-    private ArrayList<Combinaison> tentatives;  
-    private ArrayList<String> reponses; 
-    private int nbToursMax; 
+import java.util.Arrays;
 
+public class PlateauDeJeu {
+    private Combinaison combinaisonSecrete;
+    private ArrayList<Combinaison> tentatives;
+    private ArrayList<String> reponses;
+    private int nbToursMax;
+
+    /**
+     * Constructeur avec une combinaison secrète et un nombre maximal de tours
+     *
+     * @param combinaisonSecrete La combinaison secrète
+     * @param nbToursMax Le nombre maximal de tours
+     */
     public PlateauDeJeu(Combinaison combinaisonSecrete, int nbToursMax) {
         this.combinaisonSecrete = combinaisonSecrete;
         this.tentatives = new ArrayList<>();
         this.reponses = new ArrayList<>();
         this.nbToursMax = nbToursMax;
     }
+    private static final ArrayList<Character> COULEURS_DISPONIBLES = 
+        new ArrayList<>(Arrays.asList('R', 'V', 'B', 'J', 'N', 'O'));
+    /**
+     * Constructeur basé sur un nombre de lignes et de colonnes.
+     * Génère automatiquement une combinaison secrète aléatoire.
+     *
+     * @param nbLignes Nombre de lignes (interprété comme le nombre maximal de tours)
+     * @param nbColonnes Nombre de colonnes (taille de la combinaison)
+     */
+    public PlateauDeJeu(int nbLignes, int nbColonnes) {
+        this.combinaisonSecrete = Combinaison.genererAleatoire(nbColonnes, COULEURS_DISPONIBLES);
+        this.tentatives = new ArrayList<>();
+        this.reponses = new ArrayList<>();
+        this.nbToursMax = nbLignes;
+    }
 
     public void proposerCombinaison(Combinaison tentative) {
         this.tentatives.add(tentative);
-        
+
         int[] indices = combinaisonSecrete.comparer(tentative);
-        
+
         reponses.add(indices[0] + " noirs, " + indices[1] + " blancs");
     }
 
@@ -57,4 +80,5 @@ public class PlateauDeJeu {
         return nbToursMax;
     }
 }
+
 
