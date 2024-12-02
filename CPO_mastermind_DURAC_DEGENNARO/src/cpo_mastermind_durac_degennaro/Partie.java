@@ -20,6 +20,20 @@ public class Partie {
         this.plateau = new PlateauDeJeu(combinaisonSecrete, nbToursMax);
     }
     
+    public void initialiserPartie() {
+
+    // Réinitialiser les tentatives et réponses
+
+    plateau = new PlateauDeJeu(Combinaison.genererAleatoire(plateau.getCombinaisonSecrete().getElements().length, couleursDisponibles), plateau.getNbToursMax());
+
+   
+
+    System.out.println("La partie a été réinitialisée !");
+
+    System.out.println("Une nouvelle combinaison secrète a été générée.");
+
+}
+    
     public void afficherRegles() {
         System.out.println("Bienvenue dans le jeu de Mastermind !");
         System.out.println("Les règles du jeu sont simples :");
