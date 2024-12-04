@@ -12,23 +12,21 @@ import java.util.List;
  */
 public class CPO_mastermind_DURAC_DEGENNARO {
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
         Pion pionRouge = new Pion('R');
         Pion pionBleu = new Pion('B');
         Pion pionJaune = new Pion('J');
         Pion pionVert = new Pion('V');
         Pion pionBlanc = new Pion('W');
-        Pion pionNoir = new Pion('N');
+        Pion pionOrange = new Pion('N');
         
         System.out.println("Couleur du pion Rouge: " + pionRouge.getCouleur());
         System.out.println("Couleur du pion Bleu: " + pionBleu.getCouleur());
         System.out.println("Couleur du pion Jaune: " + pionJaune.getCouleur());
         System.out.println("Couleur du pion Vert: " + pionVert.getCouleur());
         System.out.println("Couleur du pion Blanc: " + pionBlanc.getCouleur());
-        System.out.println("Couleur du pion Noir: " + pionNoir.getCouleur());
+        System.out.println("Couleur du pion Orange: " + pionOrange.getCouleur());
         
         ArrayList<Character> couleursDisponibles = new ArrayList<>();
         couleursDisponibles.add('R');
@@ -36,7 +34,7 @@ public class CPO_mastermind_DURAC_DEGENNARO {
         couleursDisponibles.add('J');
         couleursDisponibles.add('V');
         couleursDisponibles.add('W');
-        couleursDisponibles.add('N');
+        couleursDisponibles.add('O');
         
         
         Combinaison combinaison1 = Combinaison.genererAleatoire(6, couleursDisponibles);

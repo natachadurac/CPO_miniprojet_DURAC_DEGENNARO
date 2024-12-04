@@ -22,7 +22,6 @@ public class Partie {
     
     public void initialiserPartie() {
 
-    // Réinitialiser les tentatives et réponses
 
     plateau = new PlateauDeJeu(Combinaison.genererAleatoire(plateau.getCombinaisonSecrete().getElements().length, couleursDisponibles), plateau.getNbToursMax());
 
@@ -36,16 +35,16 @@ public class Partie {
     
     public void afficherRegles() {
         System.out.println("Bienvenue dans le jeu de Mastermind !");
-        System.out.println("Les règles du jeu sont simples :");
-        System.out.println("1. Vous devez deviner la combinaison secrète.");
-        System.out.println("2. La combinaison est composée de 4 pions de couleurs parmi les suivantes : ");
+        System.out.println("Les regles du jeu sont simples :");
+        System.out.println("1. Vous devez deviner la combinaison secrete.");
+        System.out.println("2. La combinaison est composee de 4 pions de couleurs parmi les suivantes : ");
         for (Character couleur : couleursDisponibles) {
             System.out.print(couleur + " ");
         }
-        System.out.println("\n3. À chaque tentative, vous recevrez des indices :");
-        System.out.println("   - 'noirs' : le nombre de pions bien placés.");
-        System.out.println("   - 'blancs' : le nombre de pions corrects mais mal placés.");
-        System.out.println("4. Vous avez un nombre limité de tentatives.");
+        System.out.println("\n3. A chaque tentative, vous recevrez des indices :");
+        System.out.println("   - 'noirs' : le nombre de pions bien places.");
+        System.out.println("   - 'blancs' : le nombre de pions corrects mais mal places.");
+        System.out.println("4. Vous avez un nombre limite de tentatives.");
         System.out.println("Bonne chance !");
     }
     
@@ -79,7 +78,7 @@ public class Partie {
                 plateau.proposerCombinaison(tentative);
                 tour++;
             } else {
-                System.out.println("Entrée invalide. Veuillez entrer exactement 4 couleurs parmi " + couleursDisponibles);
+                System.out.println("Entree invalide. Veuillez entrer exactement 4 couleurs parmi " + couleursDisponibles);
             }
         }
         
@@ -97,9 +96,9 @@ public class Partie {
 
     public void terminerPartie(boolean victoire) {
         if (victoire) {
-            System.out.println("Félicitations, vous avez trouvé la combinaison secrète !");
+            System.out.println("Felicitations, vous avez trouve la combinaison secrete !");
         } else {
-            System.out.println("Dommage, vous avez perdu. La combinaison secrète était : " + plateau.getCombinaisonSecrete());
+            System.out.println("Dommage, vous avez perdu. La combinaison secrete était : " + plateau.getCombinaisonSecrete());
         }
     }
 }

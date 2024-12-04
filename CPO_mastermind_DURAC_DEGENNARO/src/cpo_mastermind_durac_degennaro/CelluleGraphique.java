@@ -4,6 +4,8 @@
  */
 package cpo_mastermind_durac_degennaro;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author natac

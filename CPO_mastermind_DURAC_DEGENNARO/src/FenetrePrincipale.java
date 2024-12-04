@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+import cpo_mastermind_durac_degennaro.CelluleGraphique;
 import cpo_mastermind_durac_degennaro.PlateauDeJeu;
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -29,6 +30,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         for (int i=0; i< nbLignes; i++){
             for (int j=0; j<nbColonnes; j++){
                 JButton bouton_cellule = new JButton ();
+                //CelluleGraphique bouton_cellule = new CelluleGraphique( grille.matriceCellules[i][j], 36,36); //matricecellules à remplacer avec la grille qu'on aura créé
                 PanneauGrille.add(bouton_cellule);
             }
         }
