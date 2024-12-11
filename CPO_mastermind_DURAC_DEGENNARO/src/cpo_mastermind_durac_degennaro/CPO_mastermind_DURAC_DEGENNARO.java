@@ -19,7 +19,7 @@ public class CPO_mastermind_DURAC_DEGENNARO {
         Pion pionJaune = new Pion('J');
         Pion pionVert = new Pion('V');
         Pion pionBlanc = new Pion('W');
-        Pion pionOrange = new Pion('N');
+        Pion pionOrange = new Pion('O');
         
         System.out.println("Couleur du pion Rouge: " + pionRouge.getCouleur());
         System.out.println("Couleur du pion Bleu: " + pionBleu.getCouleur());
