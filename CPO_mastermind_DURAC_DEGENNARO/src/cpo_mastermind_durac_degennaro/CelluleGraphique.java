@@ -4,6 +4,7 @@
  */
 package cpo_mastermind_durac_degennaro;
 
+import java.awt.Graphics;
 import javax.swing.JButton;
 
 /**
@@ -11,14 +12,24 @@ import javax.swing.JButton;
  * @author natac
  */
 public class CelluleGraphique extends JButton {
-    int largeur; 
-    int hauteur;
-    Pion celluleLumineuseAssociee;
+    int x; 
+    int y;
+    Pion[][] plateauAssocie;
  
-    public CelluleGraphique(Pion celluleLumineuseAssociee, int l,int h) {
-        this.largeur = l;
-        this.hauteur = h;
-        this.celluleLumineuseAssociee = celluleLumineuseAssociee;
+    public CelluleGraphique(Pion[][] plateauAssocie, int l,int h) {
+        this.x = l;
+        this.y = h;
+        this.plateauAssocie = plateauAssocie;
     }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        if (plateauAssocie[x][y] == null)
+        this.setText("null");
+        else  this.setText(plateauAssocie[x][y].couleur+"");
+    }
+    
+    
 }
 

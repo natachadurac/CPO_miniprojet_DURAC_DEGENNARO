@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 import cpo_mastermind_durac_degennaro.CelluleGraphique;
+import cpo_mastermind_durac_degennaro.Combinaison;
+import cpo_mastermind_durac_degennaro.Pion;
 import cpo_mastermind_durac_degennaro.PlateauDeJeu;
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -29,8 +31,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         
         for (int i=0; i< nbLignes; i++){
             for (int j=0; j<nbColonnes; j++){
-                JButton bouton_cellule = new JButton ();
-                //CelluleGraphique bouton_cellule = new CelluleGraphique( grille.matriceCellules[i][j], 36,36); //matricecellules à remplacer avec la grille qu'on aura créé
+                //JButton bouton_cellule = new JButton ();
+                CelluleGraphique bouton_cellule = new CelluleGraphique( grille.obtenirGrille(), i,j); //matricecellules à remplacer avec la grille qu'on aura créé
                 PanneauGrille.add(bouton_cellule);
             }
         }
@@ -45,6 +47,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void initComponents() {
 
         PanneauGrille = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 400));
@@ -63,6 +66,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGap(0, 400, Short.MAX_VALUE)
         );
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,17 +81,37 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addGap(65, 65, 65)
                 .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(106, 106, 106))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+ Pion[] tentativePions = new Pion[4];
+                for (int i = 0; i < 4; i++) {
+                    tentativePions[i] = new Pion('R');
+                }
+                
+                Combinaison tentative = new Combinaison(tentativePions);
+                grille.proposerCombinaison(tentative);
+                repaint();
+                grille.afficherPlateau();
+                System.out.println(grille);
+                       // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,5 +150,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanneauGrille;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

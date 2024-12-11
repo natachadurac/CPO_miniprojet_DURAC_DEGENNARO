@@ -27,7 +27,14 @@ public class PlateauDeJeu {
     private Pion[][] grille;
 
  
-
+    public Pion[][] obtenirGrille() {
+        return grille;
+    }
+    
+    public Pion obtenirPionAuxCoord(int x, int y) {
+        return grille[x][y];
+    }
+    
     private static final ArrayList<Character> COULEURS_DISPONIBLES =
 
         new ArrayList<>(Arrays.asList('R', 'V', 'B', 'J', 'N', 'O'));
