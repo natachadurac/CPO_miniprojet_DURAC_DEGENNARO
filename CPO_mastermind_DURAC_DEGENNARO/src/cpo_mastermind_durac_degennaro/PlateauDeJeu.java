@@ -26,10 +26,20 @@ public class PlateauDeJeu {
 
     private Pion[][] grille;
 
- 
+    public int getNbLignes() {
+        return grille.length;
+    }
+
+    // Méthode pour obtenir le nombre de colonnes
+    public int getNbColonnes() {
+        return grille[0].length;
+    }
+
+    // Méthode pour obtenir la grille entière
     public Pion[][] obtenirGrille() {
         return grille;
     }
+ 
     
     public Pion obtenirPionAuxCoord(int x, int y) {
         return grille[x][y];

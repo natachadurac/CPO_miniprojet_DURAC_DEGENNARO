@@ -9,42 +9,41 @@ import cpo_mastermind_durac_degennaro.PlateauDeJeu;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.*;
+import java.awt.*;
 /**
  *
  * @author flavi
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FenetrePrincipale
-     */
-    //private PlateauDeJeu plateau;
     private ArrayList<Character> couleursDisponibles;
-
-      PlateauDeJeu grille;
-      int nbCoups;
-      String caractDispo ="RBJVWO";
-      char C1 = 'R';
-      char C2  = 'R';
-      char C3= 'R';
-      char C4= 'R';
-      int cpt1=0;
-      int cpt2=0;
-      int cpt3=0;
-      int cpt4=0;
-      
+    private PlateauDeJeu grille;
+    private Combinaison combinaisonSecrete;
+    private int nbCoups;
+   
       
     public FenetrePrincipale() {
         initComponents();
         int nbLignes= 12;
         int nbColonnes = 4;
-        //this.couleursDisponibles = new ArrayList<>(couleursDisponibles);
-        //Combinaison combinaisonSecrete = Combinaison.genererAleatoire(4, this.couleursDisponibles);
+        
+        this.couleursDisponibles = new ArrayList<>();
+        this.couleursDisponibles.add('R'); 
+        this.couleursDisponibles.add('B'); 
+        this.couleursDisponibles.add('J'); 
+        this.couleursDisponibles.add('V'); 
+        this.couleursDisponibles.add('W'); 
+        this.couleursDisponibles.add('O');
       
-      
+      //on initialise la grille et la combinaison secrète
         this.grille = new PlateauDeJeu(nbLignes, nbColonnes);
+        this.combinaisonSecrete = Combinaison.genererAleatoire(4, this.couleursDisponibles);
+        
+        System.out.println(combinaisonSecrete);
         PanneauGrille.setLayout(new GridLayout (nbLignes, nbColonnes));
         
+        // on met les cellules dans le tableau, cf tuto
         for (int i=0; i< nbLignes; i++){
             for (int j=0; j<nbColonnes; j++){
                 //JButton bouton_cellule = new JButton ();
@@ -68,6 +67,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,6 +115,15 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
 
         jButton5.setText("jButton5");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("jLabel1");
+
+        jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,7 +133,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(65, 65, 65)
-                        .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addComponent(jButton1)
@@ -134,14 +148,20 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton4)
                         .addGap(57, 57, 57)
-                        .addComponent(jButton5)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addComponent(jButton5)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -157,30 +177,85 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        cpt1= (cpt1+1) %6;
-        C1 = caractDispo.charAt(cpt1);
-        System.out.println(C1 + " " + C2 + " " + C3 + " " + C4);
-        
+    changeCouleur(nbCoups, 0);  // modifie dans la premiere colonne 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        cpt2= (cpt2+1) %6;
-        C2 = caractDispo.charAt(cpt2);
-        System.out.println(C1 + " " + C2 + " " + C3 + " " + C4);
+        
+    changeCouleur(nbCoups, 1);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        cpt3= (cpt3+1) %6;
-        C3 = caractDispo.charAt(cpt3);
-        System.out.println(C1 + " " + C2 + " " + C3 + " " + C4);
+    changeCouleur(nbCoups, 2);
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        cpt4= (cpt4+1) %6;
-        C4 = caractDispo.charAt(cpt4);
-        System.out.println(C1 + " " + C2 + " " + C3 + " " + C4);
+    changeCouleur(nbCoups, 3);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    validerCombinaison();
+    
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    
+    
+ // Méthode pour changer la couleur d'une case
+private void changeCouleur(int ligne, int colonne) {
+    char[] couleurs = {'R', 'B', 'J', 'V', 'W', 'O'};
+    Pion pionActuel = grille.obtenirGrille()[ligne][colonne];
+    
+    // si case est vide on met la couleur rouge
+    if (pionActuel == null) {
+        grille.obtenirGrille()[ligne][colonne] = new Pion(couleurs[0]);
+    } else {
+        // Sicase pas vide couleur suivante
+        int indexCouleur = indice(couleurs, pionActuel.getCouleur());
+        int nextIndex = (indexCouleur + 1) % couleurs.length;
+        grille.obtenirGrille()[ligne][colonne] = new Pion(couleurs[nextIndex]);
+    }
+    
+    PanneauGrille.repaint();
+}
+
+// indice de la couleur dans le tableau
+private int indice(char[] couleurs, char couleur) {
+    for (int i = 0; i < couleurs.length; i++) {
+        if (couleurs[i] == couleur) {
+            return i;
+        }
+    }
+    return -1; //peut etre qu'on peut mettre autre chose ?
+}
+
+//valider la combinaison et passer à la ligne suivante
+private void validerCombinaison() {
+    //on crée une combinaison à partir des pions choisis
+    Pion[] combinaisonTentative = new Pion[grille.getNbColonnes()];
+    for (int i = 0; i < grille.getNbColonnes(); i++) {
+        combinaisonTentative[i] = grille.obtenirGrille()[nbCoups][i];
+    }
+
+    Combinaison tentative = new Combinaison(combinaisonTentative);
+    
+    //on compare avec la combinaison secrète, comparer() est dans Combinaison
+    int[] indices = combinaisonSecrete.comparer(tentative);
+    System.out.println("Bien placés: " + indices[0] + " | Mal placés: " + indices[1]); //comment on fait pour le mettre dans l'interface ? on crée des labels ?
+    
+    nbCoups++;
+    if (nbCoups >= grille.getNbLignes()) {
+        if (combinaisonSecrete.equals(tentative)) {
+            System.out.println("Vous avez gagné !");
+        } else {
+            System.out.println("Défaite ! La combinaison secrète était : " + combinaisonSecrete);
+        }
+    }
+}
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -223,5 +298,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
