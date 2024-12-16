@@ -4,6 +4,7 @@
  */
 package cpo_mastermind_durac_degennaro;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JButton;
 
@@ -23,13 +24,17 @@ public class CelluleGraphique extends JButton {
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-        if (plateauAssocie[x][y] == null)
-        this.setText("null");
-        else  this.setText(plateauAssocie[x][y].couleur+"");
+protected void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    Pion pion = plateauAssocie[x][y];
+    if (pion == null) {
+        this.setText(""); // Pas de texte si la case est vide
+        this.setBackground(Color.GRAY); // Couleur neutre pour case vide
+    } else {
+        this.setText(String.valueOf(pion.getCouleur()));
+        this.setBackground(Color.WHITE); // Réinitialiser la couleur
     }
-    
+}
     
 }
 

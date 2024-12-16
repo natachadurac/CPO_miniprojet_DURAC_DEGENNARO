@@ -203,7 +203,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     
     
- // Méthode pour changer la couleur d'une case
+ // on change la couleur d'une case
 private void changeCouleur(int ligne, int colonne) {
     char[] couleurs = {'R', 'B', 'J', 'V', 'W', 'O'};
     Pion pionActuel = grille.obtenirGrille()[ligne][colonne];
@@ -218,7 +218,10 @@ private void changeCouleur(int ligne, int colonne) {
         grille.obtenirGrille()[ligne][colonne] = new Pion(couleurs[nextIndex]);
     }
     
-    PanneauGrille.repaint();
+    Component bouton = PanneauGrille.getComponent(ligne * grille.getNbColonnes() + colonne);
+    if (bouton instanceof CelluleGraphique) {
+        ((CelluleGraphique) bouton).repaint(); // on met à jour interface
+    }
 }
 
 // indice de la couleur dans le tableau
@@ -231,7 +234,6 @@ private int indice(char[] couleurs, char couleur) {
     return -1; //peut etre qu'on peut mettre autre chose ?
 }
 
-//valider la combinaison et passer à la ligne suivante
 private void validerCombinaison() {
     //on crée une combinaison à partir des pions choisis
     Pion[] combinaisonTentative = new Pion[grille.getNbColonnes()];
@@ -243,7 +245,11 @@ private void validerCombinaison() {
     
     //on compare avec la combinaison secrète, comparer() est dans Combinaison
     int[] indices = combinaisonSecrete.comparer(tentative);
-    System.out.println("Bien placés: " + indices[0] + " | Mal placés: " + indices[1]); //comment on fait pour le mettre dans l'interface ? on crée des labels ?
+    //System.out.println("Bien placés: " + indices[0] + " | Mal placés: " + indices[1]);
+    
+    // on a créé des labels pour afficher ça
+    jLabel1.setText("Bien placés : " + indices[0]);
+    jLabel2.setText("Mal placés : " + indices[1]);
     
     nbCoups++;
     if (nbCoups >= grille.getNbLignes()) {
