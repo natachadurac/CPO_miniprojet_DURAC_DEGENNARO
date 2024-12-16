@@ -9,7 +9,6 @@ package cpo_mastermind_durac_degennaro;
  * @author natac
  */
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 public class Combinaison {
@@ -80,16 +79,6 @@ public class Combinaison {
         }
         return result.toString();
     }
-    public boolean equals(Object obj) {
-    if (this == obj) {
-        return true; // Même référence
-    }
-    if (obj == null || getClass() != obj.getClass()) {
-        return false; // Pas du même type
-    }
-    Combinaison autre = (Combinaison) obj;
-    return Arrays.equals(this.getElements(), autre.getElements());
-}
 
     
     public Pion[] getElements() {

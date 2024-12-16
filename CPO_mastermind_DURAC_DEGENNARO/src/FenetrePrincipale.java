@@ -247,7 +247,7 @@ private void validerCombinaison() {
     int[] indices = combinaisonSecrete.comparer(tentative);
     //System.out.println("Bien placés: " + indices[0] + " | Mal placés: " + indices[1]);
     
-    // on a créé des labels pour afficher ça
+    // on a créé des labels pour afficher
     jLabel1.setText("Bien placés : " + indices[0]);
     jLabel2.setText("Mal placés : " + indices[1]);
     
