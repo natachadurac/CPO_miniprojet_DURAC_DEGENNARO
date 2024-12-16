@@ -247,18 +247,29 @@ private void validerCombinaison() {
     int[] indices = combinaisonSecrete.comparer(tentative);
     //System.out.println("Bien placés: " + indices[0] + " | Mal placés: " + indices[1]);
     
+    System.out.println("Combinaison secrète : " + combinaisonSecrete);
+    System.out.println("Tentative : " + tentative);
+    System.out.println("Comparaison : " + combinaisonSecrete.equals(tentative));
+    System.out.println("Nombre de coups joués : " + nbCoups);
+
+    
+    if (combinaisonSecrete.equals(tentative)) {
+            System.out.println("Vous avez gagné !");
+        }
+    if (nbCoups >= 12){
+            
+            System.out.println("Défaite ! La combinaison secrète était : " + combinaisonSecrete);
+        }
+    
     // on a créé des labels pour afficher
     jLabel1.setText("Bien placés : " + indices[0]);
     jLabel2.setText("Mal placés : " + indices[1]);
     
     nbCoups++;
-    if (nbCoups >= grille.getNbLignes()) {
-        if (combinaisonSecrete.equals(tentative)) {
-            System.out.println("Vous avez gagné !");
-        } else {
-            System.out.println("Défaite ! La combinaison secrète était : " + combinaisonSecrete);
-        }
-    }
+    
+  
+    
+    
 }
     
     

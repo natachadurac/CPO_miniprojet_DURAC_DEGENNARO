@@ -9,6 +9,7 @@ package cpo_mastermind_durac_degennaro;
  * @author natac
  */
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Combinaison {
@@ -79,6 +80,13 @@ public class Combinaison {
         }
         return result.toString();
     }
+    public boolean equals(Object obj) {
+    if (this == obj) return true; // Comparaison avec soi-même
+    if (obj == null || getClass() != obj.getClass()) return false; // Types différents
+
+    Combinaison autreCombinaison = (Combinaison) obj;
+    return Arrays.equals(this.elements, autreCombinaison.elements); // Comparaison des pions
+}
 
     
     public Pion[] getElements() {
