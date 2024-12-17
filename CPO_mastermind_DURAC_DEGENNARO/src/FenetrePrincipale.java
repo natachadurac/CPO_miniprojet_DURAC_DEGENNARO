@@ -52,6 +52,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         }
     }
+    private Color getColorFromChar(char couleur) {
+    switch (couleur) {
+        case 'R': return Color.RED;    
+        case 'B': return Color.BLUE;   
+        case 'J': return Color.YELLOW; 
+        case 'V': return Color.GREEN;  
+        case 'W': return Color.WHITE;
+        case 'O': return Color.ORANGE; 
+        default: return Color.GRAY;
+    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -208,20 +219,21 @@ private void changeCouleur(int ligne, int colonne) {
     char[] couleurs = {'R', 'B', 'J', 'V', 'W', 'O'};
     Pion pionActuel = grille.obtenirGrille()[ligne][colonne];
     
-    // si case est vide on met la couleur rouge
+    // Si la case est vide, on met la couleur rouge par défaut
     if (pionActuel == null) {
         grille.obtenirGrille()[ligne][colonne] = new Pion(couleurs[0]);
     } else {
-        // Sicase pas vide couleur suivante
+        // Trouve la couleur suivante dans la liste
         int indexCouleur = indice(couleurs, pionActuel.getCouleur());
         int nextIndex = (indexCouleur + 1) % couleurs.length;
         grille.obtenirGrille()[ligne][colonne] = new Pion(couleurs[nextIndex]);
     }
     
-    Component bouton = PanneauGrille.getComponent(ligne * grille.getNbColonnes() + colonne);
-    if (bouton instanceof CelluleGraphique) {
-        ((CelluleGraphique) bouton).repaint(); // on met à jour interface
-    }
+    // Mise à jour de la couleur dans l'interface
+    PanneauGrille.getComponent(ligne * grille.getNbColonnes() + colonne)
+        .setBackground(getColorFromChar(grille.obtenirGrille()[ligne][colonne].getCouleur()));
+
+    PanneauGrille.repaint();
 }
 
 // indice de la couleur dans le tableau
@@ -265,11 +277,7 @@ private void validerCombinaison() {
     jLabel1.setText("Bien placés : " + indices[0]);
     jLabel2.setText("Mal placés : " + indices[1]);
     
-    nbCoups++;
-    
-  
-    
-    
+    nbCoups++;   
 }
     
     
