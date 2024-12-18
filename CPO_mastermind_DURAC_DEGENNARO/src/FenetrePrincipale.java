@@ -28,6 +28,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         int nbLignes= 12;
         int nbColonnes = 4;
         
+        Font font = new Font("Arial", Font.PLAIN, 30); // Police Arial, normale, taille 20
+        jLabel3.setFont(font);
+        
+        
         this.couleursDisponibles = new ArrayList<>();
         this.couleursDisponibles.add('R'); 
         this.couleursDisponibles.add('B'); 
@@ -80,6 +84,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,35 +102,35 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGap(0, 800, Short.MAX_VALUE)
         );
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Couleurs 1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Couleurs 2");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("jButton3");
+        jButton3.setText("Couleurs 3");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("jButton4");
+        jButton4.setText("Couleurs 4");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
-        jButton5.setText("jButton5");
+        jButton5.setText("Valider");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -136,19 +141,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         jLabel2.setText("jLabel2");
 
+        jLabel3.setText("MASTERMIND");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addComponent(jButton1)
@@ -160,13 +160,26 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         .addComponent(jButton4)
                         .addGap(57, 57, 57)
                         .addComponent(jButton5)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -257,26 +270,42 @@ private void validerCombinaison() {
     
     //on compare avec la combinaison secrète, comparer() est dans Combinaison
     int[] indices = combinaisonSecrete.comparer(tentative);
-    //System.out.println("Bien placés: " + indices[0] + " | Mal placés: " + indices[1]);
     
-    System.out.println("Combinaison secrète : " + combinaisonSecrete);
-    System.out.println("Tentative : " + tentative);
-    System.out.println("Comparaison : " + combinaisonSecrete.equals(tentative));
-    System.out.println("Nombre de coups joués : " + nbCoups);
+    
+    //System.out.println("Combinaison secrète : " + combinaisonSecrete);
+    //System.out.println("Tentative : " + tentative);
+    //System.out.println("Comparaison : " + combinaisonSecrete.equals(tentative));
+    //System.out.println("Nombre de coups joués : " + nbCoups);
 
+    //pour la victoire
+    if (indices[0] == 4) {
+        
+        this.dispose(); // on ferme la fenêtre de jeu
+
+        // on crée une nouvelle fenêtre pour le message
+        JFrame victoireFenetre = new JFrame("Victoire");
+        JOptionPane.showMessageDialog(victoireFenetre, "Vous avez gagné !");
+        victoireFenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        System.exit(0);
+        return;
+    }
     
-    if (combinaisonSecrete.equals(tentative)) {
-            System.out.println("Vous avez gagné !");
-        }
-    if (nbCoups >= 12){
-            
-            System.out.println("Défaite ! La combinaison secrète était : " + combinaisonSecrete);
-        }
-    
-    // on a créé des labels pour afficher
+    // on a créé des labels pour afficher les pions placés
     jLabel1.setText("Bien placés : " + indices[0]);
     jLabel2.setText("Mal placés : " + indices[1]);
     
+    //pour la défaite
+    if (nbCoups==11){
+        this.dispose();
+        JFrame defaiteFenetre = new JFrame("Defaite");
+        JOptionPane.showMessageDialog(defaiteFenetre, "Vous avez perdu...");
+        defaiteFenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        System.exit(0);
+        return;
+        
+    }
     nbCoups++;   
 }
     
@@ -325,5 +354,6 @@ private void validerCombinaison() {
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
