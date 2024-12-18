@@ -24,7 +24,7 @@ public class CelluleGraphique extends JButton {
         this.colonne = colonne;
 
         // Initialement, aucune couleur
-        this.setBackground(Color.LIGHT_GRAY);
+        this.setBackground(Color.GRAY);
         this.setOpaque(true);
         this.setBorderPainted(false);
     }
