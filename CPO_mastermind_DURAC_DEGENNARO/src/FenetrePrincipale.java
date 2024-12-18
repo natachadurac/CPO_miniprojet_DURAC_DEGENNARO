@@ -22,6 +22,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private Combinaison combinaisonSecrete;
     private int nbCoups;
    
+    private ArrayList<JLabel> labelsBienPlaces;
+    private ArrayList<JLabel> labelsMalPlaces;
       
     public FenetrePrincipale() {
         initComponents();
@@ -60,17 +62,22 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         
         jPanel1.setLayout(new GridLayout(12, 2, 5, 5)); // 12 lignes, 2 colonnes, espace de 5px entre les cellules
 
-        for (int i = 0; i < 12; i++) {
-            // Première colonne : "Bien placés :"
-            JLabel labelBienPlaces = new JLabel("Bien placés :", SwingConstants.CENTER);
-            labelBienPlaces.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Ajout d'une bordure
-            jPanel1.add(labelBienPlaces); // Ajouter au panel
+        labelsBienPlaces = new ArrayList<>();
+        labelsMalPlaces = new ArrayList<>();
 
-    // Deuxième colonne : "Bonne couleur :"
+        for (int i = 0; i < 12; i++) {
+            // colonne1
+            JLabel labelBienPlaces = new JLabel("Bien placés :", SwingConstants.CENTER);
+            labelBienPlaces.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            jPanel1.add(labelBienPlaces); // Ajouter au panel
+            labelsBienPlaces.add(labelBienPlaces); // Ajouter à la liste
+
+            // colonne2
             JLabel labelBonneCouleur = new JLabel("Mal placés :", SwingConstants.CENTER);
-            labelBonneCouleur.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Ajout d'une bordure
+            labelBonneCouleur.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             jPanel1.add(labelBonneCouleur); // Ajouter au panel
-}
+            labelsMalPlaces.add(labelBonneCouleur); // Ajouter à la liste
+        }
         
     }
     
@@ -269,63 +276,54 @@ private void changeCouleur(int ligne, int colonne) {
 }
 
 // indice de la couleur dans le tableau
-private int indice(char[] couleurs, char couleur) {
-    for (int i = 0; i < couleurs.length; i++) {
-        if (couleurs[i] == couleur) {
-            return i;
+    private int indice(char[] couleurs, char couleur) {
+        for (int i = 0; i < couleurs.length; i++) {
+            if (couleurs[i] == couleur) {
+                return i;
         }
     }
     return -1; //peut etre qu'on peut mettre autre chose ?
-}
-
-private void validerCombinaison() {
-    //on crée une combinaison à partir des pions choisis
-    Pion[] combinaisonTentative = new Pion[grille.getNbColonnes()];
-    for (int i = 0; i < grille.getNbColonnes(); i++) {
-        combinaisonTentative[i] = grille.obtenirGrille()[nbCoups][i];
     }
 
-    Combinaison tentative = new Combinaison(combinaisonTentative);
-    
-    //on compare avec la combinaison secrète, comparer() est dans Combinaison
-    int[] indices = combinaisonSecrete.comparer(tentative);
-    
-    
-    //System.out.println("Combinaison secrète : " + combinaisonSecrete);
-    //System.out.println("Tentative : " + tentative);
-    //System.out.println("Comparaison : " + combinaisonSecrete.equals(tentative));
-    //System.out.println("Nombre de coups joués : " + nbCoups);
+    private void validerCombinaison() {
+        //on crée une combinaison à partir des pions choisis
+        Pion[] combinaisonTentative = new Pion[grille.getNbColonnes()];
+        for (int i = 0; i < grille.getNbColonnes(); i++) {
+            combinaisonTentative[i] = grille.obtenirGrille()[nbCoups][i];
+        }
 
-    //pour la victoire
-    if (indices[0] == 4) {
-        
-        this.dispose(); // on ferme la fenêtre de jeu
-
-        // on crée une nouvelle fenêtre pour le message
-        JFrame victoireFenetre = new JFrame("Victoire");
-        JOptionPane.showMessageDialog(victoireFenetre, "Vous avez gagné !");
-        victoireFenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        System.exit(0);
-        return;
-    }
+        Combinaison tentative = new Combinaison(combinaisonTentative);
     
-    // on a créé des labels pour afficher les pions placés
-    //jLabel1.setText("Bien placés : " + indices[0]);
-    //jLabel2.setText("Mal placés : " + indices[1]);
+        //on compare avec la combinaison secrète, comparer() est dans Combinaison
+        int[] indices = combinaisonSecrete.comparer(tentative);
+    
+        labelsBienPlaces.get(nbCoups).setText("Bien placés : " + indices[0]);
+        labelsMalPlaces.get(nbCoups).setText("Mal placés : " + indices[1]);
+    
+        //pour la victoire
+        if (indices[0] == 4) {
+            this.dispose(); // on ferme la fenêtre de jeu
+
+            // on crée une nouvelle fenêtre pour le message
+            JFrame victoireFenetre = new JFrame("Victoire");
+            JOptionPane.showMessageDialog(victoireFenetre, "Vous avez gagné !");
+            victoireFenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+            System.exit(0);
+            return;
+        }
     
     //pour la défaite
-    if (nbCoups==11){
-        this.dispose();
-        JFrame defaiteFenetre = new JFrame("Defaite");
-        JOptionPane.showMessageDialog(defaiteFenetre, "Vous avez perdu...");
-        defaiteFenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        if (nbCoups==11){
+            this.dispose();
+            JFrame defaiteFenetre = new JFrame("Defaite");
+            JOptionPane.showMessageDialog(defaiteFenetre, "Vous avez perdu...");
+            defaiteFenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        System.exit(0);
-        return;
-        
-    }
-    nbCoups++;   
+            System.exit(0);
+            return;
+        }
+        nbCoups++;   
 }
     
     
